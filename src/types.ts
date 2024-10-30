@@ -1,6 +1,6 @@
-export type Location = "FAVORITE" | "UNDERDOG" | "NEUTRAL";
-export type SpreadResult = "WIN" | "LOSS" | "PUSH";
-export type OverUnderResult = "OVER" | "UNDER" | "PUSH";
+export type Location = 'FAVORITE' | 'UNDERDOG' | 'NEUTRAL';
+export type SpreadResult = 'WIN' | 'LOSS' | 'PUSH';
+export type OverUnderResult = 'OVER' | 'UNDER' | 'PUSH';
 
 export interface HistoricalNFLGameOdds {
   dayOfWeek: string;

@@ -1,38 +1,38 @@
-import { Location, OverUnderResult, SpreadResult } from "./types";
+import { Location, OverUnderResult, SpreadResult } from './types';
 
 export const determineLocation = (
   location1: string,
-  location2: string
+  location2: string,
 ): Location => {
-  if (location1 === "@") {
-    return "FAVORITE";
+  if (location1 === '@') {
+    return 'FAVORITE';
   }
 
-  if (location1 === "N") {
-    return "NEUTRAL";
+  if (location1 === 'N') {
+    return 'NEUTRAL';
   }
 
-  if (location2 === "N") {
-    return "NEUTRAL";
+  if (location2 === 'N') {
+    return 'NEUTRAL';
   }
 
-  return "UNDERDOG";
+  return 'UNDERDOG';
 };
 
 export const getSpreadDetails = (
-  fullSpread: string
+  fullSpread: string,
 ): { spread: number; spreadResult: SpreadResult } => {
-  const [result, spread] = fullSpread.split(" ");
+  const [result, spread] = fullSpread.split(' ');
   const spreadResult =
-    result === "W" ? "WIN" : result === "L" ? "LOSS" : "PUSH";
+    result === 'W' ? 'WIN' : result === 'L' ? 'LOSS' : 'PUSH';
   return {
     spreadResult,
-    spread: spread === "PK" ? 0 : parseFloat(spread),
+    spread: spread === 'PK' ? 0 : parseFloat(spread),
   };
 };
 
 export const getScoreDetails = (
-  fullScore: string
+  fullScore: string,
 ): {
   favoriteWon: boolean;
   tie: boolean;
@@ -40,29 +40,29 @@ export const getScoreDetails = (
   scoreUnderdog: number;
   overtime: boolean;
 } => {
-  const [result, score, ot] = fullScore.split(" ");
-  const [scoreFavoriteString, storeUnderdogString] = score.split("-");
+  const [result, score, ot] = fullScore.split(' ');
+  const [scoreFavoriteString, storeUnderdogString] = score.split('-');
   const scoreFavorite = parseInt(scoreFavoriteString);
   const scoreUnderdog = parseInt(storeUnderdogString);
   return {
-    favoriteWon: result === "W",
+    favoriteWon: result === 'W',
     tie: scoreFavorite === scoreUnderdog,
     scoreFavorite,
     scoreUnderdog,
-    overtime: ot === "(OT)",
+    overtime: ot === '(OT)',
   };
 };
 
 export const getOverUnderDetails = (
-  fullOverUnder: string
+  fullOverUnder: string,
 ): { overUnder: number; overUnderResult: OverUnderResult } => {
-  const [overUnderString, overUnder] = fullOverUnder.split(" ");
+  const [overUnderString, overUnder] = fullOverUnder.split(' ');
   const overUnderResult =
-    overUnderString === "O"
-      ? "OVER"
-      : overUnderString === "U"
-      ? "UNDER"
-      : "PUSH";
+    overUnderString === 'O'
+      ? 'OVER'
+      : overUnderString === 'U'
+        ? 'UNDER'
+        : 'PUSH';
   return {
     overUnderResult,
     overUnder: parseFloat(overUnder),

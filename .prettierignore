@@ -1,0 +1,5 @@
+dist
+.yarn
+.pnp.*
+.husky
+historical_nfl_game_odds_and_results.json

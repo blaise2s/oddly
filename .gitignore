@@ -15,3 +15,7 @@
 
 ### Project ###
 dist/*
+node_modules
+
+### Project ###
+.eslintcache

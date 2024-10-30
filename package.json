@@ -9,15 +9,20 @@
   },
   "packageManager": "yarn@4.5.1",
   "lint-staged": {
+    "*.{ts,js}": "eslint --cache --fix --max-warnings 0",
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@types/node": "^22.8.4",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.12.2"
   },
   "dependencies": {
     "axios": "^1.7.7",

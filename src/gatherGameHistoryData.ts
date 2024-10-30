@@ -1,7 +1,8 @@
 import fs from 'fs';
-import { addNFLGames, setupDatabase } from '../db/utils';
+import { setupDatabase } from '../db/utils';
 import { scrapeHistoricalNFLGameOddsForYear } from './scrapers';
 import { HistoricalNFLGameOdds } from './types';
+import { addNFLGames } from '../db/nfl';
 
 const START_YEAR = 1979;
 const END_YEAR = new Date().getFullYear();
@@ -49,12 +50,8 @@ const compileHistoricalNFLGameOdds = async (
   }
 };
 
-const main = async () => {
-  compileHistoricalNFLGameOdds({
-    years: COLLECTABLE_YEARS,
-    // writeToDatabase: true,
-    // writeToFile: 'historical_nfl_game_odds_and_results.json',
-  });
-};
-
-main();
+compileHistoricalNFLGameOdds({
+  years: COLLECTABLE_YEARS,
+  writeToDatabase: true,
+  writeToFile: 'historical_nfl_game_odds_and_results.json',
+});

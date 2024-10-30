@@ -6,6 +6,7 @@ export interface HistoricalNFLGameOdds {
   dayOfWeek: string;
   date: Date;
   timeEastern: string;
+  postseason: boolean;
   location: Location;
   favorite: string;
   underdog: string;

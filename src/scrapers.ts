@@ -21,17 +21,25 @@ export const scrapeHistoricalNFLGameOddsForYear = async (
 
     $("table.soh1 tbody tr").each((_index, element) => {
       const dayOfWeek = $(element).find("td").eq(0).text().trim();
-      if (DAYS_OF_WEEK.has(dayOfWeek)) {
-        const date = $(element).find("td").eq(1).text().trim();
-        const timeEastern = $(element).find("td").eq(2).text().trim();
-        const location1 = $(element).find("td").eq(3).text().trim();
-        const favorite = $(element).find("td").eq(4).text().trim();
-        const fullScore = $(element).find("td").eq(5).text().trim();
-        const fullSpread = $(element).find("td").eq(6).text().trim();
-        const location2 = $(element).find("td").eq(7).text().trim();
-        const underdog = $(element).find("td").eq(8).text().trim();
-        const fullOverUnder = $(element).find("td").eq(9).text().trim();
-        const notes = $(element).find("td").eq(10).text().trim();
+      const dayOfWeekPlayoffGame = $(element).find("td").eq(1).text().trim();
+
+      const isRegularSeasonGame = DAYS_OF_WEEK.has(dayOfWeek);
+      const isPostseasonGame = DAYS_OF_WEEK.has(dayOfWeekPlayoffGame);
+
+      if (isRegularSeasonGame || isPostseasonGame) {
+        let index = isRegularSeasonGame ? 1 : 2;
+        const date = $(element).find("td").eq(index++).text().trim();
+        const timeEastern = $(element).find("td").eq(index++).text().trim();
+        const location1 = $(element).find("td").eq(index++).text().trim();
+        const favorite = $(element).find("td").eq(index++).text().trim();
+        const fullScore = $(element).find("td").eq(index++).text().trim();
+        const fullSpread = $(element).find("td").eq(index++).text().trim();
+        const location2 = $(element).find("td").eq(index++).text().trim();
+        const underdog = $(element).find("td").eq(index++).text().trim();
+        const fullOverUnder = $(element).find("td").eq(index++).text().trim();
+        const notes = isRegularSeasonGame
+          ? $(element).find("td").eq(index++).text().trim()
+          : "";
 
         const { spread, spreadResult } = getSpreadDetails(fullSpread);
         const { favoriteWon, tie, scoreFavorite, scoreUnderdog, overtime } =
@@ -40,9 +48,10 @@ export const scrapeHistoricalNFLGameOddsForYear = async (
           getOverUnderDetails(fullOverUnder);
 
         games.push({
-          dayOfWeek,
+          dayOfWeek: isRegularSeasonGame ? dayOfWeek : dayOfWeekPlayoffGame,
           date: new Date(date),
           timeEastern,
+          postseason: isPostseasonGame,
           location: determineLocation(location1, location2),
           favorite,
           underdog,

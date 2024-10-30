@@ -1,10 +1,11 @@
+import fs from "fs";
+import { addNFLGames, setupDatabase } from "../db/utils";
 import { scrapeHistoricalNFLGameOddsForYear } from "./scrapers";
 import { HistoricalNFLGameOdds } from "./types";
-import fs from "fs";
 
 const START_YEAR = 1979;
-// const END_YEAR = new Date().getFullYear();
-const END_YEAR = 2023;
+const END_YEAR = new Date().getFullYear();
+// const END_YEAR = 2023;
 
 const COLLECTABLE_YEARS = Array.from(
   { length: END_YEAR - START_YEAR + 1 },
@@ -35,7 +36,7 @@ const compileHistoricalNFLGameOdds = async (
       gamesByYear[year] = games;
 
       if (writeToDatabase) {
-        // TODO: Write each game to DB
+        addNFLGames(games, year);
       }
     }
   }
@@ -45,11 +46,20 @@ const compileHistoricalNFLGameOdds = async (
   }
 };
 
-// compileHistoricalNFLGameOdds({
-//   years: COLLECTABLE_YEARS,
-//   writeToFile: "historical_nfl_game_odds_and_results.json",
-// });
-compileHistoricalNFLGameOdds({
-  years: COLLECTABLE_YEARS,
-  writeToDatabase: true,
-});
+const main = async () => {
+  await setupDatabase();
+
+  // / Write to file...
+  // compileHistoricalNFLGameOdds({
+  //   years: COLLECTABLE_YEARS,
+  //   writeToFile: "historical_nfl_game_odds_and_results.json",
+  // });
+
+  // / Write to DB...
+  // compileHistoricalNFLGameOdds({
+  //   years: COLLECTABLE_YEARS,
+  //   writeToDatabase: true,
+  // });
+};
+
+main();

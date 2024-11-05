@@ -68,3 +68,18 @@ export const getOverUnderDetails = (
     overUnder: parseFloat(overUnder),
   };
 };
+
+export const getSeedingDetails = (
+  fullFavorite: string,
+  fullUnderdog: string,
+) => {
+  const splitOn = '(';
+  const [favoriteUntrimmed, favoriteSeedString] = fullFavorite.split(splitOn);
+  const [underdogUntrimmed, underdogSeedString] = fullUnderdog.split(splitOn);
+  return {
+    favorite: favoriteUntrimmed.trim(),
+    favoriteSeed: parseInt(favoriteSeedString.replace(')', '')),
+    underdog: underdogUntrimmed.trim(),
+    underdogSeed: parseInt(underdogSeedString.replace(')', '')),
+  };
+};

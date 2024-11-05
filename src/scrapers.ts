@@ -1,15 +1,16 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { DAYS_OF_WEEK } from './constants';
+import { DAYS_OF_WEEK, NFL_TEAMS } from './constants';
 import { HistoricalNFLGameOdds } from './types';
 import {
   determineLocation,
   getOverUnderDetails,
   getScoreDetails,
+  getSeedingDetails,
   getSpreadDetails,
 } from './utils';
 
-const processHtml = (html: string): HistoricalNFLGameOdds[] => {
+const processHtml = (html: string, year: number): HistoricalNFLGameOdds[] => {
   const games: HistoricalNFLGameOdds[] = [];
 
   const $ = cheerio.load(html);
@@ -26,11 +27,11 @@ const processHtml = (html: string): HistoricalNFLGameOdds[] => {
       const date = $(element).find('td').eq(index++).text().trim();
       const timeEastern = $(element).find('td').eq(index++).text().trim();
       const location1 = $(element).find('td').eq(index++).text().trim();
-      const favorite = $(element).find('td').eq(index++).text().trim();
+      const fullFavorite = $(element).find('td').eq(index++).text().trim();
       const fullScore = $(element).find('td').eq(index++).text().trim();
       const fullSpread = $(element).find('td').eq(index++).text().trim();
       const location2 = $(element).find('td').eq(index++).text().trim();
-      const underdog = $(element).find('td').eq(index++).text().trim();
+      const fullUnderdog = $(element).find('td').eq(index++).text().trim();
       const fullOverUnder = $(element).find('td').eq(index++).text().trim();
       const notes = isRegularSeasonGame
         ? $(element).find('td').eq(index++).text().trim()
@@ -41,14 +42,37 @@ const processHtml = (html: string): HistoricalNFLGameOdds[] => {
         getScoreDetails(fullScore);
       const { overUnder, overUnderResult } = getOverUnderDetails(fullOverUnder);
 
+      let favorite = fullFavorite;
+      let favoriteSeed: number | undefined = undefined;
+      let underdog = fullUnderdog;
+      let underdogSeed: number | undefined = undefined;
+
+      if (isPostseasonGame) {
+        const {
+          favorite: fav,
+          favoriteSeed: favSeed,
+          underdog: undrdg,
+          underdogSeed: undrdgSeed,
+        } = getSeedingDetails(fullFavorite, fullUnderdog);
+        favorite = fav;
+        favoriteSeed = favSeed;
+        underdog = undrdg;
+        underdogSeed = undrdgSeed;
+      }
+
       games.push({
+        season: year,
         dayOfWeek: isRegularSeasonGame ? dayOfWeek : dayOfWeekPlayoffGame,
         date: new Date(date),
         timeEastern,
         postseason: isPostseasonGame,
         location: determineLocation(location1, location2),
         favorite,
+        currentFavorite: NFL_TEAMS.get(favorite) || favorite,
+        favoriteSeed,
         underdog,
+        currentUnderdog: NFL_TEAMS.get(underdog) || underdog,
+        underdogSeed,
         spread,
         spreadResult,
         favoriteWon,
@@ -71,7 +95,7 @@ export const scrapeHistoricalNFLGameOddsForYear = async (
   try {
     const url = `https://www.sportsoddshistory.com/nfl-game-season/?y=${year}`;
     const { data: html } = await axios.get(url);
-    return processHtml(html);
+    return processHtml(html, year);
   } catch (error) {
     console.error(
       `Error scrapping historical NFL game odds by year for ${year}:`,

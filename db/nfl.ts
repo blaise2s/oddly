@@ -4,13 +4,18 @@ import { db, pgp } from './utils';
 
 export const addNFLGame = async (game: HistoricalNFLGameOdds) => {
   const {
+    season,
     dayOfWeek,
     date,
     timeEastern,
     postseason,
     location,
     favorite,
+    currentFavorite,
+    favoriteSeed,
     underdog,
+    currentUnderdog,
+    underdogSeed,
     spread,
     spreadResult,
     favoriteWon,
@@ -25,13 +30,18 @@ export const addNFLGame = async (game: HistoricalNFLGameOdds) => {
 
   const query = SQL`
     INSERT INTO nfl_games (
+      season,
       day_of_week,
       game_date,
       time_eastern,
       postseason,
       game_loc,
       favorite,
+      current_favorite,
+      favorite_seed,
       underdog,
+      current_underdog,
+      underdog_seed,
       spread,
       spread_res,
       favorite_won,
@@ -43,13 +53,18 @@ export const addNFLGame = async (game: HistoricalNFLGameOdds) => {
       over_under_res,
       notes
     ) VALUES (
+      ${season},
       ${dayOfWeek},
       ${date},
       ${timeEastern},
       ${postseason},
       ${location},
       ${favorite},
+      ${currentFavorite},
+      ${favoriteSeed},
       ${underdog},
+      ${currentUnderdog},
+      ${underdogSeed},
       ${spread},
       ${spreadResult},
       ${favoriteWon},
@@ -78,13 +93,18 @@ export const addNFLGames = async (
 ) => {
   const columns = new pgp.helpers.ColumnSet(
     [
+      { name: 'season', prop: 'season' },
       { name: 'day_of_week', prop: 'dayOfWeek' },
       { name: 'game_date', prop: 'date' },
       { name: 'time_eastern', prop: 'timeEastern' },
       { name: 'postseason', prop: 'postseason' },
       { name: 'game_loc', prop: 'location' },
       { name: 'favorite', prop: 'favorite' },
+      { name: 'current_favorite', prop: 'currentFavorite' },
+      { name: 'favorite_seed', prop: 'favoriteSeed' },
       { name: 'underdog', prop: 'underdog' },
+      { name: 'current_underdog', prop: 'currentUnderdog' },
+      { name: 'underdog_seed', prop: 'underdogSeed' },
       { name: 'score_favorite', prop: 'scoreFavorite' },
       { name: 'score_underdog', prop: 'scoreUnderdog' },
       { name: 'favorite_won', prop: 'favoriteWon' },

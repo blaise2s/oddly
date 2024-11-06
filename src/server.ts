@@ -18,12 +18,18 @@ app.use(cors(corsOptions));
 app.post<
   unknown,
   unknown,
-  { seasons?: number[]; teams?: string[]; order?: Order[] }
+  {
+    seasons?: number[];
+    teams?: string[];
+    headToHead?: boolean;
+    order?: Order[];
+  }
   // { seasons?: number[]; teams?: string[]; order?: Order[] }
 >('/api/nfl/games', async (req, res) => {
   const {
     seasons = [new Date().getFullYear()],
     teams,
+    headToHead,
     order: orders,
   } = req.body;
 
@@ -41,7 +47,7 @@ app.post<
 
     if (teams) {
       queryParts.push(
-        `(g.current_favorite = ANY($${position}::text[]) OR g.current_underdog = ANY($${position}::text[]))`,
+        `(g.current_favorite = ANY($${position}::text[]) ${headToHead ? 'AND' : 'OR'} g.current_underdog = ANY($${position}::text[]))`,
       );
       queryParams.push(teams);
       position += 1;

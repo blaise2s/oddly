@@ -1,3 +1,6 @@
+-- Select all games
+select * from oddly.public.nfl_games game;
+
 -- Select all postseason games
 select * from oddly.public.nfl_games game where game.postseason;
 
@@ -26,3 +29,8 @@ select (count(case when postseason and favorite_won = false then 1 end) * 100.0 
 -- Find all unique team names to create team name map
 select regexp_replace(favorite, ' \(\d+\)', '') as name from nfl_games union select regexp_replace(underdog, ' \(\d+\)', '') as name from nfl_games order by name;
 
+SELECT * FROM oddly.public.nfl_games g where
+	g.season = ANY(array[2024, 2023, 2022, 2021, 2020]) and
+	(g.current_favorite = ANY(array['Chicago Bears', 'Detroit Lions', 'Green Bay Packers', 'Minnesota Vikings']) or
+	g.current_underdog = ANY(array['Chicago Bears', 'Detroit Lions', 'Green Bay Packers', 'Minnesota Vikings'])) and 
+	g.tie;

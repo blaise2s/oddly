@@ -85,27 +85,3 @@ export const NFL_TEAMS = new Map([
   ['Washington Football Team', 'Washington Commanders'],
   ['Washington Redskins', 'Washington Commanders'],
 ]);
-
-export const OrderBys = {
-  Season: 'season',
-  DayOfWeek: 'day_of_week',
-  Date: 'game_date',
-  Postseason: 'postseason',
-  Location: 'game_loc',
-  Favorite: 'current_favorite',
-  FavoriteSeed: 'favorite_seed',
-  Underdog: 'current_underdog',
-  UnderdogSeed: 'underdog_seed',
-  Spread: 'spread',
-  SpreadResult: 'spread_res',
-  FavoriteWon: 'favorite_won',
-  Tie: 'tie',
-  ScoreFavorite: 'score_favorite',
-  ScoreUnderdog: 'score_underdog',
-  Overtime: 'overtime',
-} as const;
-
-export const Sorts = {
-  Asc: 'ASC',
-  Desc: 'DESC',
-} as const;

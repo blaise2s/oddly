@@ -2,8 +2,7 @@ import bodyParser from 'body-parser';
 import cors, { CorsOptions } from 'cors';
 import express from 'express';
 import { db } from '../db/utils';
-import { OrderBys, Sorts } from './constants';
-import { Order } from './types';
+import { Order, OrderBys, Sorts } from './types';
 
 const corsOptions: CorsOptions = {
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],

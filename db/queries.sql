@@ -4,6 +4,9 @@ select * from oddly.public.nfl_games game;
 -- Select all postseason games
 select * from oddly.public.nfl_games game where game.postseason;
 
+-- Select Packers games
+select * from oddly.public.nfl_games game where game.current_favorite = 'Green Bay Packers' order by game_date desc;
+
 -- Select all post season games from a season
 select * from oddly.public.nfl_games game where game.season = 2023;
 

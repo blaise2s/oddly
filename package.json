@@ -8,7 +8,7 @@
     "serve": "nodemon",
     "start": "node dist/index.js"
   },
-  "packageManager": "yarn@4.5.1",
+  "packageManager": "yarn@4.5.3",
   "lint-staged": {
     "*.{ts,js}": "eslint --cache --fix --max-warnings 0",
     "**/*": "prettier --write --ignore-unknown"

@@ -31,7 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@types/body-parser", "npm:1.19.5"],\
           ["@types/cors", "npm:2.8.17"],\
           ["@types/express", "npm:5.0.0"],\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["axios", "npm:1.7.8"],\
           ["body-parser", "npm:1.20.3"],\
           ["cheerio", "npm:1.0.0"],\
@@ -365,7 +365,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/body-parser", "npm:1.19.5"],\
           ["@types/connect", "npm:3.4.38"],\
-          ["@types/node", "npm:22.10.0"]\
+          ["@types/node", "npm:22.10.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -375,7 +375,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-connect-npm-3.4.38-a8a4c38337-2e1cdba2c4.zip/node_modules/@types/connect/",\
         "packageDependencies": [\
           ["@types/connect", "npm:3.4.38"],\
-          ["@types/node", "npm:22.10.0"]\
+          ["@types/node", "npm:22.10.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -385,7 +385,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-cors-npm-2.8.17-2556d16051-457364c28c.zip/node_modules/@types/cors/",\
         "packageDependencies": [\
           ["@types/cors", "npm:2.8.17"],\
-          ["@types/node", "npm:22.10.0"]\
+          ["@types/node", "npm:22.10.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -417,7 +417,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-express-serve-static-core-npm-5.0.1-32d5354816-42919f9de5.zip/node_modules/@types/express-serve-static-core/",\
         "packageDependencies": [\
           ["@types/express-serve-static-core", "npm:5.0.1"],\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/qs", "npm:6.9.16"],\
           ["@types/range-parser", "npm:1.2.7"],\
           ["@types/send", "npm:0.17.4"]\
@@ -453,10 +453,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/node", [\
-      ["npm:22.10.0", {\
-        "packageLocation": "./.yarn/cache/@types-node-npm-22.10.0-21eda01d20-efb3783b6f.zip/node_modules/@types/node/",\
+      ["npm:22.10.1", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-22.10.1-db989fc54b-0fbb6d29fa.zip/node_modules/@types/node/",\
         "packageDependencies": [\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["undici-types", "npm:6.20.0"]\
         ],\
         "linkType": "HARD"\
@@ -486,7 +486,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/send", "npm:0.17.4"],\
           ["@types/mime", "npm:1.3.5"],\
-          ["@types/node", "npm:22.10.0"]\
+          ["@types/node", "npm:22.10.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -497,7 +497,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/serve-static", "npm:1.15.7"],\
           ["@types/http-errors", "npm:2.0.4"],\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/send", "npm:0.17.4"]\
         ],\
         "linkType": "HARD"\
@@ -3016,7 +3016,7 @@ const RAW_RUNTIME_STATE =
           ["@types/body-parser", "npm:1.19.5"],\
           ["@types/cors", "npm:2.8.17"],\
           ["@types/express", "npm:5.0.0"],\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["axios", "npm:1.7.8"],\
           ["body-parser", "npm:1.20.3"],\
           ["cheerio", "npm:1.0.0"],\
@@ -4021,7 +4021,7 @@ const RAW_RUNTIME_STATE =
           ["@tsconfig/node12", "npm:1.0.11"],\
           ["@tsconfig/node14", "npm:1.0.3"],\
           ["@tsconfig/node16", "npm:1.0.4"],\
-          ["@types/node", "npm:22.10.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/swc__core", null],\
           ["@types/swc__wasm", null],\
           ["@types/typescript", null],\

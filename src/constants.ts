@@ -8,6 +8,7 @@ export const DAYS_OF_WEEK = new Set([
   'Sun',
 ]);
 
+// [teamName, currentTeamName]
 export const NFL_TEAMS = new Map([
   // 1 Arizona Cardinals
   ['Arizona Cardinals', 'Arizona Cardinals'],

@@ -5,7 +5,7 @@ import { HistoricalNFLGameOdds } from './types';
 import { addNFLGames } from '../db/nfl';
 
 const START_YEAR = 1979;
-const END_YEAR = new Date().getFullYear();
+const END_YEAR = new Date().getFullYear() - 1;
 
 const COLLECTABLE_YEARS = Array.from(
   { length: END_YEAR - START_YEAR + 1 },

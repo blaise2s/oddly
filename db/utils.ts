@@ -3,11 +3,11 @@ import pgPromise, { QueryFile } from 'pg-promise';
 
 export const pgp = pgPromise();
 export const db = pgp({
-  host: 'localhost',
-  port: 5432,
-  database: 'oddly',
-  user: 'oddly',
-  password: 'oddly',
+  host: process.env.DB_HOST || 'localhost',
+  port: +(process.env.DB_PORT || 5432),
+  database: process.env.DB_NAME || 'oddly',
+  user: process.env.DB_USER || 'oddly',
+  password: process.env.DB_PASSWORD || 'oddly',
 });
 
 const loadSqlFile = (file: string): QueryFile => {

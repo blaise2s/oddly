@@ -17,11 +17,11 @@ interface Params {
   writeToFile?: string;
   writeToDatabase?: boolean;
 }
-const compileHistoricalNFLGameOdds = async (
-  { years, writeToFile, writeToDatabase }: Params = {
-    years: [new Date().getFullYear()],
-  },
-) => {
+const compileHistoricalNFLGameOdds = async ({
+  years,
+  writeToFile,
+  writeToDatabase,
+}: Params) => {
   if (!writeToFile && !writeToDatabase) {
     return;
   }
@@ -53,5 +53,4 @@ const compileHistoricalNFLGameOdds = async (
 compileHistoricalNFLGameOdds({
   years: COLLECTABLE_YEARS,
   writeToDatabase: true,
-  writeToFile: 'historical_nfl_game_odds_and_results.json',
 });

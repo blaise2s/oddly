@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: oddly
+      DB_PASSWORD: oddly
+      DB_NAME: oddly
+    depends_on:
+      - db
+      - db_init
+
+  db:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: oddly
+      POSTGRES_PASSWORD: oddly
+      POSTGRES_DB: oddly
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  db_init:
+    image: postgres:17
+    container_name: postgres_init
+    environment:
+      POSTGRES_USER: oddly
+      POSTGRES_PASSWORD: oddly
+      POSTGRES_DB: oddly
+      PGPASSWORD: oddly
+    volumes:
+      - ./db/oddly.dump:/db/oddly.dump
+    entrypoint: |
+      sh -c "
+      until pg_isready -h db -p 5432; do
+        echo 'Waiting for database...'
+        sleep 2;
+      done;
+
+      # Check if the database already contains data
+      if psql -h db -d oddly -U oddly -c 'SELECT 1 FROM nfl_games LIMIT 1;' > /dev/null 2>&1; then
+        echo 'Database already initialized. Skipping dump import.';
+      else
+        echo 'Initializing database from dump...';
+        psql -h db -d oddly -U oddly -f /db/oddly.dump;
+      fi"
+    depends_on:
+      - db
+
+volumes:
+  pg_data:

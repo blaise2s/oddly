@@ -23,7 +23,6 @@ app.post<
     headToHead?: boolean;
     order?: Order[];
   }
-  // { seasons?: number[]; teams?: string[]; order?: Order[] }
 >('/api/nfl/games', async (req, res) => {
   const {
     seasons = [new Date().getFullYear()],

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-    workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -30,6 +29,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::458841242443:role/GitHubActionsSecretsAccess
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Build the app
         run: yarn build

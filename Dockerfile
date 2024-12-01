@@ -1,5 +1,5 @@
 # Use Node.js with Corepack pre-installed
-FROM node:18-alpine
+FROM node:22-alpine
 
 # Enable Corepack
 RUN corepack enable

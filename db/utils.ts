@@ -8,6 +8,7 @@ export const db = pgp({
   database: process.env.DB_NAME || 'oddly',
   user: process.env.DB_USER || 'oddly',
   password: process.env.DB_PASSWORD || 'oddly',
+  ssl: { rejectUnauthorized: false },
 });
 
 const loadSqlFile = (file: string): QueryFile => {

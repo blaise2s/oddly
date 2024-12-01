@@ -13,6 +13,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
+// Health check
+app.get('/api/health', (_, res) => {
+  res.json({ status: 'up' });
+});
+
 // Games
 app.post<
   unknown,
